@@ -1557,7 +1557,7 @@
 ## 5. 递归（Recursion）
 5. 递归（Recursion）
    
-    > 1. 递归的时间复杂度Master公式：
+    > 1. **递归的时间复杂度Master公式：**
     > 
     >    T(N) = a * T(N / b) + O(n^d)。
     >    if log(b)a < d,  O(n^d)
@@ -1835,17 +1835,17 @@
     >     /**
     >          * 插入排序
     >          */
-    >         public static void insertion() {
+    >         public static void sort(int[] arr) {
     >             int temp = 0;
-    >             for (int i = 1; i < insertion.length; i++) {
-    >                 temp = insertion[i];
-    >                 for (int j = i - 1; j >= 0; j--) {
-    >                     if (temp > insertion[j]) {
-    >                         insertion[j + 1] = insertion[j];
-    >                     } else {
-    >                     	insertion[j] = temp;
-    >                     }
+    >             int tempIndex = 0;
+    >             for (int i = 1; i < arr.length; i++) {
+    >                 temp = arr[i];
+    >                 tempIndex = i - 1;
+    >                 while (tempIndex >= 0 && temp < arr[tempIndex]) {
+    >                     arr[tempIndex + 1] = arr[tempIndex];
+    >                     tempIndex--;
     >                 }
+    >                 arr[tempIndex + 1] = temp;
     >             }
     >         }
     >     ```
@@ -1903,18 +1903,19 @@
     >         public static void shell(int s) {
     >             // 对s个数组进行插入排序
     >             int temp = 0;
+    >             int tempIndex = 0;
     >             
     >             // 每个数组
     >             for (int i = 0; i < s; i++) {
     >                 // 插入排序
     >                 for (int k = i; k < shell.length; k = k + s) {
     >                     temp = shell[k];
-    >                     for (int l = k - s; l >= 0; l = l - s) {
-    >                         if (temp > shell[l]) {
-    >                             shell[l + s] = shell[l];
-    >                             shell[l] = temp;
-    >                         }
+    >                     tempIndex = k;
+    >                     while(tempIndex - s >= 0 && temp < arr[tempIndex]) {
+    >                     	arr[tempIndex + s] = arr[tempIndex];
+    >                     	tempIndex = tempIndex - s;
     >                     }
+    >                     arr[tempIndex	] = temp;
     >                 }
     >             }
     >             
@@ -1925,32 +1926,6 @@
     >                 // s变小，继续排序
     >                 s = s / 2;
     >                 shell(s);
-    >             }
-    >         }
-    >         
-    >         /**
-    >          * 希尔排序，递归改为for循环
-    >          * @param s 增量
-    >          */
-    >         public static void shell(int s) {
-    >             // 对s个数组进行插入排序
-    >             int temp = 0;
-    >     
-    >             // 当s==1，算法结束
-    >             for (int m = s; m > 0; m = m / 2) {
-    >                 // 每个数组
-    >                 for (int i = 0; i < m; i++) {
-    >                     // 插入排序
-    >                     for (int k = i + m; k < shell.length; k = k + m) {
-    >                         temp = shell[k];
-    >                         for (int l = k - m; l >= 0; l = l - m) {
-    >                             if (temp > shell[l]) {
-    >                                 shell[l + m] = shell[l];
-    >                                 shell[l] = temp;
-    >                             }
-    >                         }
-    >                     }
-    >                 }
     >             }
     >         }
     >     ```
