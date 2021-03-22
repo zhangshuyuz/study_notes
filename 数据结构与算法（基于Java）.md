@@ -1900,38 +1900,27 @@
     >          * 希尔排序
     >          * @param s 增量
     >          */
-    >         public static void shell(int s) {
-    >             // 对s个数组进行插入排序
-    >             int temp = 0;
-    >             int tempIndex = 0;
-    >             
-    >             // 每个数组
-    >             for (int i = 0; i < s; i++) {
-    >                 // 插入排序
-    >                 for (int k = i; k < shell.length; k = k + s) {
-    >                     temp = shell[k];
-    >                     tempIndex = k;
-    >                     while(tempIndex - s >= 0 && temp < arr[tempIndex]) {
-    >                     	arr[tempIndex + s] = arr[tempIndex];
-    >                     	tempIndex = tempIndex - s;
-    >                     }
-    >                     arr[tempIndex	] = temp;
-    >                 }
-    >             }
-    >             
-    >             // 当s==1，算法结束，开始返回
-    >             if (s == 1) {
-    >                 return;
-    >             } else {
-    >                 // s变小，继续排序
-    >                 s = s / 2;
-    >                 shell(s);
+    >         public static void shell(int s, int[] arr) {
+    >             for (int grap = s; grap > 0; grap /= 2) {
+    >             	
+    >             	for(int i = grap; i < arr.length; i++) {
+    >             		int j = i;
+    >             		int temp = arr[j];
+    >             		if (arr[j] < arr[j - grap]) {
+    >             			while (j - grap >= 0 && temp < arr[j - grap]) {
+    >             				arr[j] = arr[j - grap];
+    >             				j -= grap;
+    >             			}
+    >             			arr[j] = temp;
+    >             		}
+    >             	}
+    >             	
     >             }
     >         }
     >     ```
     >     
     > 5. 通过对比可知，希尔排序比简单插入排序快
-    >
+    > 
 ### 5. 快速排序（QuickSort）
 5. 快速排序（QuickSort）
     > 1. 介绍
